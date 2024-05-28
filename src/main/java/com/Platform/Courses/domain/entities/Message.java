@@ -30,4 +30,5 @@ public class Message {
     @Column(name = "sent_date", nullable = false)
     private LocalDate sentDate;
 
+    
 }
