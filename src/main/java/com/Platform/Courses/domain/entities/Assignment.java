@@ -40,7 +40,7 @@ public class Assignment {
     @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "fk_id_lesson", referencedColumnName = "id_lesson")
     private Lesson lesson;
 
