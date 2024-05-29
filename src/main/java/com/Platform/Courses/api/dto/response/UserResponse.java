@@ -1,5 +1,7 @@
 package com.Platform.Courses.api.dto.response;
 
+import java.util.List;
+
 import com.Platform.Courses.util.enums.Role;
 
 import lombok.AllArgsConstructor;
@@ -19,5 +21,10 @@ public class UserResponse {
     private String email;
     private String fullName;
     private Role role;
+    private List<MessageSenderBasicResponse> sentMessages;
+    private List<MessageReceiverBasicResponse> receivedMessages;
+    // private List<Submission> submissions;
+    // private List<Enrollment> enrollments;
+    // private List<Course> courses;
 
 }

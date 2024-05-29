@@ -1,6 +1,8 @@
 package com.Platform.Courses.infrastructure.services;
 
-import org.springframework.beans.BeanUtils;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -8,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.Platform.Courses.api.dto.request.UserRequest;
 import com.Platform.Courses.api.dto.request.update_request.UpdateUserRequest;
+import com.Platform.Courses.api.dto.response.MessageSenderBasicResponse;
 import com.Platform.Courses.api.dto.response.UserResponse;
 import com.Platform.Courses.domain.entities.User;
 import com.Platform.Courses.domain.repositories.UserRepository;
 import com.Platform.Courses.infrastructure.abstract_services.IUserService;
+import com.Platform.Courses.infrastructure.helpers.EntityToEntity;
 
 import lombok.AllArgsConstructor;
 
@@ -26,7 +30,6 @@ public class UserService implements IUserService {
     public Page<UserResponse> getAll(int page, int size) {
         if (page < 0)
             page = 0;
-
         PageRequest pagination = PageRequest.of(page, size);
         return this.userRepository.findAll(pagination).map(this::entityToResponse);
     }
@@ -38,16 +41,20 @@ public class UserService implements IUserService {
 
     @Override
     public UserResponse create(UserRequest request) {
-        User user = this.requestToEntity(request);
+        User user = EntityToEntity.entityToEntity(request, User.class);
+        user.setSentMessages(new ArrayList<>());
+        user.setReceivedMessages(new ArrayList<>());
         return this.entityToResponse(this.userRepository.save(user));
     }
 
     @Override
     public UserResponse update(UpdateUserRequest request, Long id) {
         User oldUser = this.find(id);
-        User userInfoUpdated = this.requestToEntity(request);
+        User userInfoUpdated = EntityToEntity.entityToEntity(request, User.class);
         userInfoUpdated.setIdUser(id);
         userInfoUpdated.setRole(oldUser.getRole());
+        userInfoUpdated.setSentMessages(oldUser.getSentMessages());
+        userInfoUpdated.setReceivedMessages(oldUser.getReceivedMessages());
         return this.entityToResponse(this.userRepository.save(userInfoUpdated));
     }
 
@@ -61,15 +68,18 @@ public class UserService implements IUserService {
     }
 
     private UserResponse entityToResponse(User entity) {
-        UserResponse userResponse = new UserResponse();
-        BeanUtils.copyProperties(entity, userResponse);
-        return userResponse;
-    }
-
-    private <T> User requestToEntity(T request) {
-        User user = new User();
-        BeanUtils.copyProperties(request, user);
-        return user;
+        List<MessageSenderBasicResponse> sentMessages = entity.getSentMessages().stream().map(this::).toList();
+        return UserResponse
+                .builder()
+                .idUser(entity.getIdUser())
+                .userName(entity.getUserName())
+                .password(entity.getPassword())
+                .email(entity.getEmail())
+                .fullName(entity.getFullName())
+                .role(entity.getRole())
+                .sentMessages(null)
+                .receivedMessages(null)
+                .build();
     }
 
 }
