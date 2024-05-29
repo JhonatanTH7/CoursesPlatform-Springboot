@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.Platform.Courses.api.dto.request.UserRequest;
+import com.Platform.Courses.api.dto.request.update_request.UpdateUserRequest;
 import com.Platform.Courses.api.dto.response.UserResponse;
 import com.Platform.Courses.domain.entities.User;
 import com.Platform.Courses.domain.repositories.UserRepository;
@@ -42,11 +43,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserResponse update(UserRequest request, Long id) {
-        User user = this.find(id);
-        user = this.requestToEntity(request);
-        user.setIdUser(id);
-        return this.entityToResponse(this.userRepository.save(user));
+    public UserResponse update(UpdateUserRequest request, Long id) {
+        User oldUser = this.find(id);
+        User userInfoUpdated = this.requestToEntity(request);
+        userInfoUpdated.setIdUser(id);
+        userInfoUpdated.setRole(oldUser.getRole());
+        return this.entityToResponse(this.userRepository.save(userInfoUpdated));
     }
 
     @Override
@@ -64,7 +66,7 @@ public class UserService implements IUserService {
         return userResponse;
     }
 
-    private User requestToEntity(UserRequest request) {
+    private <T> User requestToEntity(T request) {
         User user = new User();
         BeanUtils.copyProperties(request, user);
         return user;

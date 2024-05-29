@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Platform.Courses.api.dto.request.UserRequest;
+import com.Platform.Courses.api.dto.request.update_request.UpdateUserRequest;
 import com.Platform.Courses.api.dto.response.UserResponse;
 import com.Platform.Courses.infrastructure.abstract_services.IUserService;
 
@@ -55,7 +56,7 @@ public class UserController {
 
     @PutMapping(path = "/update/{id}")
     public ResponseEntity<UserResponse> update(
-            @Validated @RequestBody UserRequest request,
+            @Validated @RequestBody UpdateUserRequest request,
             @PathVariable Long id) {
         return ResponseEntity.ok(this.objIUserService.update(request, id));
     }
