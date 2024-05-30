@@ -1,7 +1,5 @@
 package com.Platform.Courses.api.dto.response;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,12 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageReceiverBasicResponse {
+public class CourseInUserResponse {
 
-    private Long idMessage;
-    private String messageContent;
-    private LocalDate sentDate;
-    private UserBasicResponse sender;
+    private Long idCourse;
     private String courseName;
+    private String description;
+    private UserBasicResponse instructor;
 
 }

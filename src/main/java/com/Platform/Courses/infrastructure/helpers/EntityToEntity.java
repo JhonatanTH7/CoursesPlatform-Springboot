@@ -7,13 +7,13 @@ import org.springframework.beans.BeanUtils;
 
 public class EntityToEntity {
 
-    public static <FROMENTITY, TOENTITY> TOENTITY entityToEntity(FROMENTITY request, Class<TOENTITY> entityType) {
+    public static <FROMENTITY, TOENTITY> TOENTITY entityToEntity(FROMENTITY fromEntity, Class<TOENTITY> toEntity) {
         Constructor<TOENTITY> constructor;
         TOENTITY entity;
         try {
-            constructor = entityType.getDeclaredConstructor();
+            constructor = toEntity.getDeclaredConstructor();
             entity = constructor.newInstance();
-            BeanUtils.copyProperties(request, entity);
+            BeanUtils.copyProperties(fromEntity, entity);
             return entity;
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException | NoSuchMethodException | SecurityException e) {

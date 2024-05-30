@@ -23,8 +23,8 @@ public class UserResponse {
     private Role role;
     private List<MessageSenderBasicResponse> sentMessages;
     private List<MessageReceiverBasicResponse> receivedMessages;
-    // private List<Submission> submissions;
-    // private List<Enrollment> enrollments;
-    // private List<Course> courses;
+    private List<SubmissionInUserResponse> submissions;
+    private List<EnrollmentInUserResponse> enrollments;
+    private List<CourseInUserResponse> courses;
 
 }

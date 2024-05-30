@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageReceiverBasicResponse {
+public class SubmissionInUserResponse {
 
-    private Long idMessage;
-    private String messageContent;
-    private LocalDate sentDate;
-    private UserBasicResponse sender;
-    private String courseName;
+    private Long idSubmission;
+    private String content;
+    private LocalDate submissionDate;
+    private double grade;
+    private String assignmentTitle;
 
 }
