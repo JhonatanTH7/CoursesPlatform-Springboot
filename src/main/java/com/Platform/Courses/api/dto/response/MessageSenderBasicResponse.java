@@ -1,22 +1,18 @@
 package com.Platform.Courses.api.dto.response;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
+@EqualsAndHashCode(callSuper = false)
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageSenderBasicResponse {
+public class MessageSenderBasicResponse extends MessageBasicResponse {
 
-    private Long idMessage;
-    private String messageContent;
-    private LocalDate sentDate;
     private UserBasicResponse receiver;
-    private String courseName;
 
 }
