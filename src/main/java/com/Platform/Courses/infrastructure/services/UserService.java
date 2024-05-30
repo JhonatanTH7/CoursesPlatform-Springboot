@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.Platform.Courses.api.dto.request.UserRequest;
 import com.Platform.Courses.api.dto.request.update_request.UpdateUserRequest;
-import com.Platform.Courses.api.dto.response.CourseInUserResponse;
+import com.Platform.Courses.api.dto.response.CourseBasicResponse;
 import com.Platform.Courses.api.dto.response.EnrollmentInUserResponse;
 import com.Platform.Courses.api.dto.response.MessageReceiverBasicResponse;
 import com.Platform.Courses.api.dto.response.MessageSenderBasicResponse;
@@ -92,7 +92,7 @@ public class UserService implements IUserService {
                 .toList();
         List<EnrollmentInUserResponse> enrollments = entity.getEnrollments().stream().map(this::enrollmentToResponse)
                 .toList();
-        List<CourseInUserResponse> courses = entity.getCourses().stream().map(this::courseToResponse).toList();
+        List<CourseBasicResponse> courses = entity.getCourses().stream().map(this::courseToResponse).toList();
         return UserResponse
                 .builder()
                 .idUser(entity.getIdUser())
@@ -146,11 +146,11 @@ public class UserService implements IUserService {
         return enrollmentInUserResponse;
     }
 
-    private CourseInUserResponse courseToResponse(Course entity) {
-        CourseInUserResponse courseInUserResponse = EntityToEntity.entityToEntity(entity,
-                CourseInUserResponse.class);
-        courseInUserResponse
+    private CourseBasicResponse courseToResponse(Course entity) {
+        CourseBasicResponse courseBasicResponse = EntityToEntity.entityToEntity(entity,
+                CourseBasicResponse.class);
+        courseBasicResponse
                 .setInstructor(EntityToEntity.entityToEntity(entity.getInstructor(), UserBasicResponse.class));
-        return courseInUserResponse;
+        return courseBasicResponse;
     }
 }

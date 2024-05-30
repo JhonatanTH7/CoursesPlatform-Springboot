@@ -25,6 +25,6 @@ public class UserResponse {
     private List<MessageReceiverBasicResponse> receivedMessages;
     private List<SubmissionInUserResponse> submissions;
     private List<EnrollmentInUserResponse> enrollments;
-    private List<CourseInUserResponse> courses;
+    private List<CourseBasicResponse> courses;
 
 }
