@@ -5,6 +5,6 @@ import com.Platform.Courses.api.dto.request.update_request.UpdateAssignmentReque
 import com.Platform.Courses.api.dto.response.AssignmentResponse;
 
 public interface IAssignmentService
-        extends CrudService<AssignmentRequest, UpdateAssignmentRequest, AssignmentResponse, Long> {
+                extends CrudService<AssignmentRequest, UpdateAssignmentRequest, AssignmentResponse, Long> {
 
 }
