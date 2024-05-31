@@ -11,9 +11,9 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageReceiverBasicResponse extends MessageBasicResponse {
+public class MessageInCourseResponse extends MessageBasicResponse {
 
     private UserBasicResponse sender;
-    private Long courseId;
+    private UserBasicResponse receiver;
 
 }

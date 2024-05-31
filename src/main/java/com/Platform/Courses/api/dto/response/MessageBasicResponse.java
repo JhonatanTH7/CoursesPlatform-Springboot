@@ -16,6 +16,5 @@ public class MessageBasicResponse {
     private Long idMessage;
     private String messageContent;
     private LocalDate sentDate;
-    private String courseName;
 
 }

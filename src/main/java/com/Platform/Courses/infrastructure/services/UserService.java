@@ -15,7 +15,6 @@ import com.Platform.Courses.api.dto.response.EnrollmentInUserResponse;
 import com.Platform.Courses.api.dto.response.MessageReceiverBasicResponse;
 import com.Platform.Courses.api.dto.response.MessageSenderBasicResponse;
 import com.Platform.Courses.api.dto.response.SubmissionInUserResponse;
-import com.Platform.Courses.api.dto.response.UserBasicResponse;
 import com.Platform.Courses.api.dto.response.UserResponse;
 import com.Platform.Courses.domain.entities.Course;
 import com.Platform.Courses.domain.entities.Enrollment;
@@ -110,31 +109,27 @@ public class UserService implements IUserService {
     }
 
     private MessageSenderBasicResponse senderToResponse(Message entity) {
-        return MessageSenderBasicResponse
-                .builder()
-                .idMessage(entity.getIdMessage())
-                .messageContent(entity.getMessageContent())
-                .sentDate(entity.getSentDate())
-                .receiver(EntityToEntity.entityToEntity(entity.getReceiver(), UserBasicResponse.class))
-                .courseName(entity.getCourse().getCourseName())
-                .build();
+        MessageSenderBasicResponse messageSenderBasicResponse = EntityToEntity.entityToEntity(entity,
+                MessageSenderBasicResponse.class);
+        messageSenderBasicResponse.setCourseId(entity.getCourse().getIdCourse());
+        messageSenderBasicResponse
+                .setReceiver(EntityToEntity.userToBasicResponse(entity.getReceiver()));
+        return messageSenderBasicResponse;
     }
 
     private MessageReceiverBasicResponse receiverToResponse(Message entity) {
-        return MessageReceiverBasicResponse
-                .builder()
-                .idMessage(entity.getIdMessage())
-                .messageContent(entity.getMessageContent())
-                .sentDate(entity.getSentDate())
-                .sender(EntityToEntity.entityToEntity(entity.getSender(), UserBasicResponse.class))
-                .courseName(entity.getCourse().getCourseName())
-                .build();
+        MessageReceiverBasicResponse messageReceiverBasicResponse = EntityToEntity.entityToEntity(entity,
+                MessageReceiverBasicResponse.class);
+        messageReceiverBasicResponse.setCourseId(entity.getCourse().getIdCourse());
+        messageReceiverBasicResponse
+                .setSender(EntityToEntity.userToBasicResponse(entity.getSender()));
+        return messageReceiverBasicResponse;
     }
 
     private SubmissionInUserResponse submissionToResponse(Submission entity) {
         SubmissionInUserResponse submissionInUserResponse = EntityToEntity.entityToEntity(entity,
                 SubmissionInUserResponse.class);
-        submissionInUserResponse.setAssignmentTitle(entity.getAssignment().getAssignmentTitle());
+        submissionInUserResponse.setAssignmentId(entity.getAssignment().getIdAssignment());
         return submissionInUserResponse;
     }
 
@@ -150,7 +145,7 @@ public class UserService implements IUserService {
         CourseBasicResponse courseBasicResponse = EntityToEntity.entityToEntity(entity,
                 CourseBasicResponse.class);
         courseBasicResponse
-                .setInstructor(EntityToEntity.entityToEntity(entity.getInstructor(), UserBasicResponse.class));
+                .setInstructor(EntityToEntity.userToBasicResponse(entity.getInstructor()));
         return courseBasicResponse;
     }
 }

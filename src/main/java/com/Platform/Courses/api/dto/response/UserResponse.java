@@ -2,25 +2,21 @@ package com.Platform.Courses.api.dto.response;
 
 import java.util.List;
 
-import com.Platform.Courses.util.enums.Role;
-
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.experimental.SuperBuilder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@EqualsAndHashCode(callSuper = false)
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse {
+public class UserResponse extends UserBasicResponse {
 
-    private Long idUser;
-    private String userName;
     private String password;
-    private String email;
     private String fullName;
-    private Role role;
     private List<MessageSenderBasicResponse> sentMessages;
     private List<MessageReceiverBasicResponse> receivedMessages;
     private List<SubmissionInUserResponse> submissions;

@@ -3,12 +3,12 @@ package com.Platform.Courses.api.dto.response;
 import com.Platform.Courses.util.enums.Role;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserBasicResponse {

@@ -14,51 +14,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Platform.Courses.api.dto.request.UserRequest;
-import com.Platform.Courses.api.dto.request.update_request.UpdateUserRequest;
-import com.Platform.Courses.api.dto.response.UserResponse;
-import com.Platform.Courses.infrastructure.abstract_services.IUserService;
+import com.Platform.Courses.api.dto.request.CourseRequest;
+import com.Platform.Courses.api.dto.request.update_request.UpdateCourseRequest;
+import com.Platform.Courses.api.dto.response.CourseResponse;
+import com.Platform.Courses.infrastructure.abstract_services.ICourseService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping(path = "/user")
+@RequestMapping(path = "/course")
 @AllArgsConstructor
-public class UserController {
+public class CourseController {
 
     @Autowired
-    private final IUserService iUserService;
+    private final ICourseService iCourseService;
 
     @GetMapping
-    public ResponseEntity<Page<UserResponse>> getAll(
+    public ResponseEntity<Page<CourseResponse>> getAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size) {
-        return ResponseEntity.ok(this.iUserService.getAll(page - 1, size));
+        return ResponseEntity.ok(this.iCourseService.getAll(page - 1, size));
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<UserResponse> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(this.iUserService.getById(id));
+    public ResponseEntity<CourseResponse> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(this.iCourseService.getById(id));
     }
 
     @PostMapping(path = "/create")
-    public ResponseEntity<UserResponse> create(
-            @Validated @RequestBody UserRequest request) {
-        return ResponseEntity.ok(this.iUserService.create(request));
+    public ResponseEntity<CourseResponse> create(
+            @Validated @RequestBody CourseRequest request) {
+        return ResponseEntity.ok(this.iCourseService.create(request));
     }
 
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        this.iUserService.delete(id);
+        this.iCourseService.delete(id);
 
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(path = "/update/{id}")
-    public ResponseEntity<UserResponse> update(
-            @Validated @RequestBody UpdateUserRequest request,
+    public ResponseEntity<CourseResponse> update(
+            @Validated @RequestBody UpdateCourseRequest request,
             @PathVariable Long id) {
-        return ResponseEntity.ok(this.iUserService.update(request, id));
+        return ResponseEntity.ok(this.iCourseService.update(request, id));
     }
 
 }

@@ -14,5 +14,6 @@ import lombok.experimental.SuperBuilder;
 public class MessageSenderBasicResponse extends MessageBasicResponse {
 
     private UserBasicResponse receiver;
+    private Long courseId;
 
 }
