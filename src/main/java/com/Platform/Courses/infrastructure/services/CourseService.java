@@ -14,6 +14,7 @@ import com.Platform.Courses.api.dto.response.CourseResponse;
 import com.Platform.Courses.api.dto.response.EnrollmentInCourseResponse;
 import com.Platform.Courses.api.dto.response.LessonBasicResponse;
 import com.Platform.Courses.api.dto.response.MessageInCourseResponse;
+import com.Platform.Courses.api.dto.response.UserBasicResponse;
 import com.Platform.Courses.domain.entities.Course;
 import com.Platform.Courses.domain.entities.Enrollment;
 import com.Platform.Courses.domain.entities.Lesson;
@@ -73,6 +74,23 @@ public class CourseService implements ICourseService {
     @Override
     public void delete(Long id) {
         this.courseRepository.delete(this.find(id));
+    }
+
+    @Override
+    public List<LessonBasicResponse> getAllLessonsByCourseId(Long id) {
+        return this.find(id).getLessons().stream().map(this::lessonToResponse).toList();
+    }
+
+    @Override
+    public List<MessageInCourseResponse> getAllMessagesByCourseId(Long id) {
+        return this.find(id).getMessages().stream().map(this::messageToResponse).toList();
+    }
+
+    @Override
+    public List<UserBasicResponse> getAllUsersByCourseId(Long id) {
+        return this.find(id).getEnrollments().stream().map(enrollment -> {
+            return EntityToEntity.userToBasicResponse(enrollment.getStudent());
+        }).toList();
     }
 
     private Course find(Long id) {

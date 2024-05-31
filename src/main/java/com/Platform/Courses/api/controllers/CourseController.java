@@ -1,5 +1,7 @@
 package com.Platform.Courses.api.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Platform.Courses.api.dto.request.CourseRequest;
 import com.Platform.Courses.api.dto.request.update_request.UpdateCourseRequest;
 import com.Platform.Courses.api.dto.response.CourseResponse;
+import com.Platform.Courses.api.dto.response.LessonBasicResponse;
+import com.Platform.Courses.api.dto.response.MessageInCourseResponse;
+import com.Platform.Courses.api.dto.response.UserBasicResponse;
 import com.Platform.Courses.infrastructure.abstract_services.ICourseService;
 
 import lombok.AllArgsConstructor;
@@ -59,6 +64,21 @@ public class CourseController {
             @Validated @RequestBody UpdateCourseRequest request,
             @PathVariable Long id) {
         return ResponseEntity.ok(this.iCourseService.update(request, id));
+    }
+
+    @GetMapping(path = "/{id}/lessons")
+    public ResponseEntity<List<LessonBasicResponse>> getAllLessons(@PathVariable Long id) {
+        return ResponseEntity.ok(this.iCourseService.getAllLessonsByCourseId(id));
+    }
+
+    @GetMapping(path = "/{id}/messages")
+    public ResponseEntity<List<MessageInCourseResponse>> getAllMessages(@PathVariable Long id) {
+        return ResponseEntity.ok(this.iCourseService.getAllMessagesByCourseId(id));
+    }
+
+    @GetMapping(path = "/{id}/users")
+    public ResponseEntity<List<UserBasicResponse>> getAllUsers(@PathVariable Long id) {
+        return ResponseEntity.ok(this.iCourseService.getAllUsersByCourseId(id));
     }
 
 }
