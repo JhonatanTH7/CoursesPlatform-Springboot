@@ -111,7 +111,10 @@ public class UserService implements IUserService {
     private MessageSenderBasicResponse senderToResponse(Message entity) {
         MessageSenderBasicResponse messageSenderBasicResponse = EntityToEntity.entityToEntity(entity,
                 MessageSenderBasicResponse.class);
-        messageSenderBasicResponse.setCourseId(entity.getCourse().getIdCourse());
+        Course course = entity.getCourse();
+        if (course != null) {
+            messageSenderBasicResponse.setCourseId(course.getIdCourse());
+        }
         messageSenderBasicResponse
                 .setReceiver(EntityToEntity.userToBasicResponse(entity.getReceiver()));
         return messageSenderBasicResponse;
@@ -120,7 +123,10 @@ public class UserService implements IUserService {
     private MessageReceiverBasicResponse receiverToResponse(Message entity) {
         MessageReceiverBasicResponse messageReceiverBasicResponse = EntityToEntity.entityToEntity(entity,
                 MessageReceiverBasicResponse.class);
-        messageReceiverBasicResponse.setCourseId(entity.getCourse().getIdCourse());
+        Course course = entity.getCourse();
+        if (course != null) {
+            messageReceiverBasicResponse.setCourseId(course.getIdCourse());
+        }
         messageReceiverBasicResponse
                 .setSender(EntityToEntity.userToBasicResponse(entity.getSender()));
         return messageReceiverBasicResponse;

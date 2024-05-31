@@ -11,8 +11,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubmissionInUserResponse extends SubmissionBasicResponse {
+public class SubmissionInAssignmentResponse extends SubmissionBasicResponse {
 
-    private Long assignmentId;
+    private UserBasicResponse student;
 
 }

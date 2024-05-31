@@ -1,5 +1,7 @@
 package com.Platform.Courses.api.dto.response;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,8 +13,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubmissionInUserResponse extends SubmissionBasicResponse {
+public class AssignmentResponse extends AssignmentBasicResponse {
 
-    private Long assignmentId;
+    private LessonInAssignmentResponse lesson;
+
+    private List<SubmissionInAssignmentResponse> submissions;
 
 }
