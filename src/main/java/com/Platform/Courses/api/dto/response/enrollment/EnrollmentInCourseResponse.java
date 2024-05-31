@@ -1,6 +1,8 @@
-package com.Platform.Courses.api.dto.response;
+package com.Platform.Courses.api.dto.response.enrollment;
 
 import java.time.LocalDate;
+
+import com.Platform.Courses.api.dto.response.user.UserBasicResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

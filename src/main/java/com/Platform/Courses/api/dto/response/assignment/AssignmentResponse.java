@@ -1,6 +1,9 @@
-package com.Platform.Courses.api.dto.response;
+package com.Platform.Courses.api.dto.response.assignment;
 
 import java.util.List;
+
+import com.Platform.Courses.api.dto.response.lesson.LessonInAssignmentResponse;
+import com.Platform.Courses.api.dto.response.submission.SubmissionInAssignmentResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

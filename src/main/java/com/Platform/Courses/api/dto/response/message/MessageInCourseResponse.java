@@ -1,4 +1,6 @@
-package com.Platform.Courses.api.dto.response;
+package com.Platform.Courses.api.dto.response.message;
+
+import com.Platform.Courses.api.dto.response.user.UserBasicResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

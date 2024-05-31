@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.Platform.Courses.api.dto.request.UserRequest;
 import com.Platform.Courses.api.dto.request.update_request.UpdateUserRequest;
-import com.Platform.Courses.api.dto.response.CourseBasicResponse;
-import com.Platform.Courses.api.dto.response.EnrollmentInUserResponse;
-import com.Platform.Courses.api.dto.response.MessageReceiverBasicResponse;
-import com.Platform.Courses.api.dto.response.MessageSenderBasicResponse;
-import com.Platform.Courses.api.dto.response.SubmissionInUserResponse;
-import com.Platform.Courses.api.dto.response.UserResponse;
+import com.Platform.Courses.api.dto.response.course.CourseBasicResponse;
+import com.Platform.Courses.api.dto.response.enrollment.EnrollmentInUserResponse;
+import com.Platform.Courses.api.dto.response.message.MessageReceiverBasicResponse;
+import com.Platform.Courses.api.dto.response.message.MessageSenderBasicResponse;
+import com.Platform.Courses.api.dto.response.submission.SubmissionInUserResponse;
+import com.Platform.Courses.api.dto.response.user.UserResponse;
 import com.Platform.Courses.domain.entities.Course;
 import com.Platform.Courses.domain.entities.Enrollment;
 import com.Platform.Courses.domain.entities.Message;

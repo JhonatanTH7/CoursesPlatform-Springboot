@@ -1,6 +1,12 @@
-package com.Platform.Courses.api.dto.response;
+package com.Platform.Courses.api.dto.response.user;
 
 import java.util.List;
+
+import com.Platform.Courses.api.dto.response.course.CourseBasicResponse;
+import com.Platform.Courses.api.dto.response.enrollment.EnrollmentInUserResponse;
+import com.Platform.Courses.api.dto.response.message.MessageReceiverBasicResponse;
+import com.Platform.Courses.api.dto.response.message.MessageSenderBasicResponse;
+import com.Platform.Courses.api.dto.response.submission.SubmissionInUserResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.experimental.SuperBuilder;

@@ -1,4 +1,4 @@
-package com.Platform.Courses.api.dto.response;
+package com.Platform.Courses.api.dto.response.user;
 
 import com.Platform.Courses.util.enums.Role;
 

@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.Platform.Courses.api.dto.request.CourseRequest;
 import com.Platform.Courses.api.dto.request.update_request.UpdateCourseRequest;
-import com.Platform.Courses.api.dto.response.CourseResponse;
-import com.Platform.Courses.api.dto.response.LessonBasicResponse;
-import com.Platform.Courses.api.dto.response.MessageInCourseResponse;
-import com.Platform.Courses.api.dto.response.UserBasicResponse;
+import com.Platform.Courses.api.dto.response.course.CourseResponse;
+import com.Platform.Courses.api.dto.response.lesson.LessonBasicResponse;
+import com.Platform.Courses.api.dto.response.message.MessageInCourseResponse;
+import com.Platform.Courses.api.dto.response.user.UserBasicResponse;
 
 @Service
 public interface ICourseService extends CrudService<CourseRequest, UpdateCourseRequest, CourseResponse, Long> {

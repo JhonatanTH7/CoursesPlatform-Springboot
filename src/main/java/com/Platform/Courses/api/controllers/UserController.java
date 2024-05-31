@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Platform.Courses.api.dto.request.UserRequest;
 import com.Platform.Courses.api.dto.request.update_request.UpdateUserRequest;
-import com.Platform.Courses.api.dto.response.UserResponse;
+import com.Platform.Courses.api.dto.response.user.UserResponse;
 import com.Platform.Courses.infrastructure.abstract_services.IUserService;
 
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.Platform.Courses.api.dto.response;
+package com.Platform.Courses.api.dto.response.assignment;
 
 import java.time.LocalDate;
 

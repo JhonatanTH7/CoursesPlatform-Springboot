@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.Platform.Courses.api.dto.request.AssignmentRequest;
 import com.Platform.Courses.api.dto.request.update_request.UpdateAssignmentRequest;
-import com.Platform.Courses.api.dto.response.AssignmentResponse;
-import com.Platform.Courses.api.dto.response.LessonInAssignmentResponse;
-import com.Platform.Courses.api.dto.response.SubmissionInAssignmentResponse;
+import com.Platform.Courses.api.dto.response.assignment.AssignmentResponse;
+import com.Platform.Courses.api.dto.response.lesson.LessonInAssignmentResponse;
+import com.Platform.Courses.api.dto.response.submission.SubmissionInAssignmentResponse;
 import com.Platform.Courses.domain.entities.Assignment;
 import com.Platform.Courses.domain.entities.Lesson;
 import com.Platform.Courses.domain.repositories.AssignmentRepository;

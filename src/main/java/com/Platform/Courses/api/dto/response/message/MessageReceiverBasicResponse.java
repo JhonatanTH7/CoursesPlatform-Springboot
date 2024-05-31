@@ -1,4 +1,6 @@
-package com.Platform.Courses.api.dto.response;
+package com.Platform.Courses.api.dto.response.message;
+
+import com.Platform.Courses.api.dto.response.user.UserBasicResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +13,9 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LessonInAssignmentResponse extends LessonBasicResponse {
+public class MessageReceiverBasicResponse extends MessageBasicResponse {
 
-    private Long idCourse;
+    private UserBasicResponse sender;
+    private Long courseId;
 
 }

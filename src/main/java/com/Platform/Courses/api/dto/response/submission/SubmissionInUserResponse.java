@@ -1,4 +1,4 @@
-package com.Platform.Courses.api.dto.response;
+package com.Platform.Courses.api.dto.response.submission;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

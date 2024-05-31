@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Platform.Courses.api.dto.request.LessonRequest;
 import com.Platform.Courses.api.dto.request.update_request.UpdateLessonRequest;
-import com.Platform.Courses.api.dto.response.AssignmentBasicResponse;
-import com.Platform.Courses.api.dto.response.LessonResponse;
+import com.Platform.Courses.api.dto.response.assignment.AssignmentBasicResponse;
+import com.Platform.Courses.api.dto.response.lesson.LessonResponse;
 import com.Platform.Courses.infrastructure.abstract_services.ILessonService;
 
 import lombok.AllArgsConstructor;

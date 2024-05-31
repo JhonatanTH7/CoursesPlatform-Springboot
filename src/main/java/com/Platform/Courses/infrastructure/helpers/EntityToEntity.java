@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.springframework.beans.BeanUtils;
 
-import com.Platform.Courses.api.dto.response.UserBasicResponse;
+import com.Platform.Courses.api.dto.response.user.UserBasicResponse;
 import com.Platform.Courses.domain.entities.User;
 
 public class EntityToEntity {
