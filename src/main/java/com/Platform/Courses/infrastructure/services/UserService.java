@@ -77,6 +77,13 @@ public class UserService implements IUserService {
         this.userRepository.delete(this.find(id));
     }
 
+    @Override
+    public List<CourseBasicResponse> getAllCoursesByUserId(Long id) {
+        return this.find(id).getEnrollments().stream().map(enrollment -> {
+            return courseToResponse(enrollment.getCourse());
+        }).toList();
+    }
+
     private User find(Long id) {
         return this.userRepository.findById(id).orElseThrow();
     }
@@ -154,4 +161,5 @@ public class UserService implements IUserService {
                 .setInstructor(EntityToEntity.userToBasicResponse(entity.getInstructor()));
         return courseBasicResponse;
     }
+
 }

@@ -1,5 +1,7 @@
 package com.Platform.Courses.api.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Platform.Courses.api.dto.request.UserRequest;
 import com.Platform.Courses.api.dto.request.update_request.UpdateUserRequest;
+import com.Platform.Courses.api.dto.response.course.CourseBasicResponse;
 import com.Platform.Courses.api.dto.response.user.UserResponse;
 import com.Platform.Courses.infrastructure.abstract_services.IUserService;
 
@@ -59,6 +62,11 @@ public class UserController {
             @Validated @RequestBody UpdateUserRequest request,
             @PathVariable Long id) {
         return ResponseEntity.ok(this.iUserService.update(request, id));
+    }
+
+    @GetMapping(path = "/{id}/courses")
+    public ResponseEntity<List<CourseBasicResponse>> getAllCourses(@PathVariable Long id) {
+        return ResponseEntity.ok(this.iUserService.getAllCoursesByUserId(id));
     }
 
 }
