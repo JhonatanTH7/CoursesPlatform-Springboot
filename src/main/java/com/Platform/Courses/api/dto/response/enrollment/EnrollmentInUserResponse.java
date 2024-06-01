@@ -1,22 +1,20 @@
 package com.Platform.Courses.api.dto.response.enrollment;
 
-import java.time.LocalDate;
-
 import com.Platform.Courses.api.dto.response.course.CourseBasicResponse;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
+@EqualsAndHashCode(callSuper = false)
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EnrollmentInUserResponse {
+public class EnrollmentInUserResponse extends EnrollmentBasicResponse {
 
-    private Long idEnrollment;
-    private LocalDate enrollmentDate;
     private CourseBasicResponse course;
 
 }

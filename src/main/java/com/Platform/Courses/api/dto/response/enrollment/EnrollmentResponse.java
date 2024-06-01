@@ -1,5 +1,6 @@
 package com.Platform.Courses.api.dto.response.enrollment;
 
+import com.Platform.Courses.api.dto.response.course.CourseBasicResponse;
 import com.Platform.Courses.api.dto.response.user.UserBasicResponse;
 
 import lombok.AllArgsConstructor;
@@ -13,8 +14,9 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EnrollmentInCourseResponse extends EnrollmentBasicResponse {
+public class EnrollmentResponse extends EnrollmentBasicResponse {
 
     private UserBasicResponse student;
+    private CourseBasicResponse course;
 
 }
