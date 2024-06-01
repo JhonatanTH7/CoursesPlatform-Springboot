@@ -1,6 +1,7 @@
 package com.Platform.Courses.api.dto.response.submission;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ public class SubmissionBasicResponse {
 
     private Long idSubmission;
     private String content;
-    private LocalDate submissionDate;
-    private double grade;
+    private LocalDateTime submissionDate;
+    private BigDecimal grade;
 
 }

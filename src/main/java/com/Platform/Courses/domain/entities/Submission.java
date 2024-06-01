@@ -1,6 +1,9 @@
 package com.Platform.Courses.domain.entities;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,9 +33,10 @@ public class Submission {
     @Column(nullable = false)
     private String content;
     @Column(name = "submission_date", nullable = false)
-    private LocalDate submissionDate;
+    @CreationTimestamp
+    private LocalDateTime submissionDate;
     @Column(nullable = false)
-    private double grade;
+    private BigDecimal grade;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_assignment", referencedColumnName = "id_assignment")
