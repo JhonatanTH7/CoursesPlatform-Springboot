@@ -1,6 +1,6 @@
 package com.Platform.Courses.api.dto.response.message;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +15,6 @@ public class MessageBasicResponse {
 
     private Long idMessage;
     private String messageContent;
-    private LocalDate sentDate;
+    private LocalDateTime sentDate;
 
 }

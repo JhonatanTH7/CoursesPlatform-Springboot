@@ -1,9 +1,12 @@
 package com.Platform.Courses.domain.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,7 +33,8 @@ public class Message {
     @Column(name = "message_content", nullable = false)
     private String messageContent;
     @Column(name = "sent_date", nullable = false)
-    private LocalDate sentDate;
+    @CreationTimestamp
+    private LocalDateTime sentDate;
 
     @ManyToOne
     @JoinColumn(name = "fk_id_sender", referencedColumnName = "id_user")
@@ -40,7 +44,7 @@ public class Message {
     @JoinColumn(name = "fk_id_receiver", referencedColumnName = "id_user")
     private User receiver;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_id_course", referencedColumnName = "id_course")
     private Course course;
 
