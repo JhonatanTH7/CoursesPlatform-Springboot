@@ -16,6 +16,7 @@ import com.Platform.Courses.domain.repositories.AssignmentRepository;
 import com.Platform.Courses.domain.repositories.LessonRepository;
 import com.Platform.Courses.infrastructure.abstract_services.IAssignmentService;
 import com.Platform.Courses.infrastructure.helpers.EntityToEntity;
+import com.Platform.Courses.util.exceptions.ResourceNotFound;
 
 import lombok.AllArgsConstructor;
 
@@ -37,7 +38,8 @@ public class AssignmentService implements IAssignmentService {
     @Override
     public AssignmentResponse create(AssignmentRequest request) {
         Assignment assignment = EntityToEntity.entityToEntity(request, Assignment.class);
-        Lesson lesson = this.lessonRepository.findById(request.getIdLesson()).orElseThrow();
+        Lesson lesson = this.lessonRepository.findById(request.getIdLesson())
+                .orElseThrow(() -> new ResourceNotFound("No lesson found with the id: " + request.getIdLesson()));
         assignment.setLesson(lesson);
         assignment.setSubmissions(new ArrayList<>());
         return this.entityToResponse(this.assignmentRepository.save(assignment));
@@ -59,7 +61,8 @@ public class AssignmentService implements IAssignmentService {
     }
 
     private Assignment find(Long id) {
-        return this.assignmentRepository.findById(id).orElseThrow();
+        return this.assignmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFound("No assignment found with the id: " + id));
     }
 
     private AssignmentResponse entityToResponse(Assignment entity) {

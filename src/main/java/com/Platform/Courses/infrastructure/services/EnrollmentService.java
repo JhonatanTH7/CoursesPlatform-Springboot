@@ -12,6 +12,7 @@ import com.Platform.Courses.domain.repositories.EnrollmentRepository;
 import com.Platform.Courses.domain.repositories.UserRepository;
 import com.Platform.Courses.infrastructure.abstract_services.IEnrollmentService;
 import com.Platform.Courses.infrastructure.helpers.EntityToEntity;
+import com.Platform.Courses.util.exceptions.ResourceNotFound;
 
 import lombok.AllArgsConstructor;
 
@@ -36,8 +37,10 @@ public class EnrollmentService implements IEnrollmentService {
     @Override
     public EnrollmentResponse create(EnrollmentRequest request) {
         Enrollment enrollment = EntityToEntity.entityToEntity(request, Enrollment.class);
-        enrollment.setStudent(this.userRepository.findById(request.getIdStudent()).orElseThrow());
-        enrollment.setCourse(this.courseRepository.findById(request.getIdCourse()).orElseThrow());
+        enrollment.setStudent(this.userRepository.findById(request.getIdStudent())
+                .orElseThrow(() -> new ResourceNotFound("No student found with the id: " + request.getIdStudent())));
+        enrollment.setCourse(this.courseRepository.findById(request.getIdCourse())
+                .orElseThrow(() -> new ResourceNotFound("No course found with the id: " + request.getIdCourse())));
         return this.entityToResponse(this.enrollmentRepository.save(enrollment));
     }
 
@@ -47,7 +50,8 @@ public class EnrollmentService implements IEnrollmentService {
     }
 
     private Enrollment find(Long id) {
-        return this.enrollmentRepository.findById(id).orElseThrow();
+        return this.enrollmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFound("No enrollment found with the id: " + id));
     }
 
     private EnrollmentResponse entityToResponse(Enrollment entity) {
