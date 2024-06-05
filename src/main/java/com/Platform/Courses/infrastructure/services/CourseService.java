@@ -23,7 +23,7 @@ import com.Platform.Courses.domain.repositories.CourseRepository;
 import com.Platform.Courses.domain.repositories.UserRepository;
 import com.Platform.Courses.infrastructure.abstract_services.ICourseService;
 import com.Platform.Courses.infrastructure.helpers.EntityToEntity;
-import com.Platform.Courses.util.exceptions.ResourceNotFound;
+import com.Platform.Courses.util.exceptions.ResourceNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -55,7 +55,7 @@ public class CourseService implements ICourseService {
         Course course = EntityToEntity.entityToEntity(request, Course.class);
         course.setInstructor(userRepository.findById(request.getIdInstructor())
                 .orElseThrow(
-                        () -> new ResourceNotFound("No instructor found with the id: " + request.getIdInstructor())));
+                        () -> new ResourceNotFoundException("No instructor found with the id: " + request.getIdInstructor())));
         course.setEnrollments(new ArrayList<>());
         course.setMessages(new ArrayList<>());
         course.setLessons(new ArrayList<>());
@@ -98,7 +98,7 @@ public class CourseService implements ICourseService {
 
     private Course find(Long id) {
         return this.courseRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound("No course found with the id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No course found with the id: " + id));
     }
 
     private CourseResponse entityToResponse(Course entity) {

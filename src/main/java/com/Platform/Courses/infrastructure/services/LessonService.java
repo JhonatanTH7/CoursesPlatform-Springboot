@@ -17,7 +17,7 @@ import com.Platform.Courses.domain.repositories.CourseRepository;
 import com.Platform.Courses.domain.repositories.LessonRepository;
 import com.Platform.Courses.infrastructure.abstract_services.ILessonService;
 import com.Platform.Courses.infrastructure.helpers.EntityToEntity;
-import com.Platform.Courses.util.exceptions.ResourceNotFound;
+import com.Platform.Courses.util.exceptions.ResourceNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -40,7 +40,7 @@ public class LessonService implements ILessonService {
     public LessonResponse create(LessonRequest request) {
         Lesson lesson = EntityToEntity.entityToEntity(request, Lesson.class);
         lesson.setCourse(this.courseRepository.findById(request.getIdCourse())
-                .orElseThrow(() -> new ResourceNotFound("No course found with the id: " + request.getIdCourse())));
+                .orElseThrow(() -> new ResourceNotFoundException("No course found with the id: " + request.getIdCourse())));
         lesson.setAssignments(new ArrayList<>());
         return entityToResponse(this.lessonRepository.save(lesson));
     }
@@ -66,7 +66,7 @@ public class LessonService implements ILessonService {
     }
 
     private Lesson find(Long id) {
-        return this.lessonRepository.findById(id).orElseThrow(() -> new ResourceNotFound("No lesson found with the id: " + id));
+        return this.lessonRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No lesson found with the id: " + id));
     }
 
     private LessonResponse entityToResponse(Lesson entity) {

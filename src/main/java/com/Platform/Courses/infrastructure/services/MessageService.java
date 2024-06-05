@@ -16,7 +16,7 @@ import com.Platform.Courses.domain.repositories.MessageRepository;
 import com.Platform.Courses.domain.repositories.UserRepository;
 import com.Platform.Courses.infrastructure.abstract_services.IMessageService;
 import com.Platform.Courses.infrastructure.helpers.EntityToEntity;
-import com.Platform.Courses.util.exceptions.ResourceNotFound;
+import com.Platform.Courses.util.exceptions.ResourceNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -37,7 +37,7 @@ public class MessageService implements IMessageService {
     public MessageResponse create(MessageRequest request) {
         Message message = EntityToEntity.entityToEntity(request, Message.class);
         message.setCourse(this.courseRepository.findById(request.getIdCourse())
-                .orElseThrow(() -> new ResourceNotFound("No course found with the id: " + request.getIdCourse())));
+                .orElseThrow(() -> new ResourceNotFoundException("No course found with the id: " + request.getIdCourse())));
         message.setSender(findUser(request.getIdSender()));
         message.setReceiver(findUser(request.getIdReceiver()));
         return this.entityToResponse(this.messageRepository.save(message));
@@ -53,7 +53,7 @@ public class MessageService implements IMessageService {
 
     private User findUser(Long id) {
         return this.userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound("No user found with the id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No user found with the id: " + id));
     }
 
     private MessageResponse entityToResponse(Message entity) {

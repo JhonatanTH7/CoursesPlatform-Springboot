@@ -24,7 +24,7 @@ import com.Platform.Courses.domain.entities.User;
 import com.Platform.Courses.domain.repositories.UserRepository;
 import com.Platform.Courses.infrastructure.abstract_services.IUserService;
 import com.Platform.Courses.infrastructure.helpers.EntityToEntity;
-import com.Platform.Courses.util.exceptions.ResourceNotFound;
+import com.Platform.Courses.util.exceptions.ResourceNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -87,7 +87,7 @@ public class UserService implements IUserService {
 
     private User find(Long id) {
         return this.userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound("No user found with the id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No user found with the id: " + id));
     }
 
     private UserResponse entityToResponse(User entity) {

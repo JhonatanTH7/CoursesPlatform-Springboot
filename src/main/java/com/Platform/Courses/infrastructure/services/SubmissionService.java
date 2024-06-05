@@ -13,7 +13,7 @@ import com.Platform.Courses.domain.repositories.SubmissionRepository;
 import com.Platform.Courses.domain.repositories.UserRepository;
 import com.Platform.Courses.infrastructure.abstract_services.ISubmissionService;
 import com.Platform.Courses.infrastructure.helpers.EntityToEntity;
-import com.Platform.Courses.util.exceptions.ResourceNotFound;
+import com.Platform.Courses.util.exceptions.ResourceNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -39,9 +39,9 @@ public class SubmissionService implements ISubmissionService {
     public SubmissionResponse create(SubmissionRequest request) {
         Submission submission = EntityToEntity.entityToEntity(request, Submission.class);
         submission.setAssignment(this.assignmentRepository.findById(request.getIdAssignment()).orElseThrow(
-                () -> new ResourceNotFound("No assignment found with the id: " + request.getIdAssignment())));
+                () -> new ResourceNotFoundException("No assignment found with the id: " + request.getIdAssignment())));
         submission.setStudent(this.userRepository.findById(request.getIdStudent())
-                .orElseThrow(() -> new ResourceNotFound("No student found with the id: " + request.getIdStudent())));
+                .orElseThrow(() -> new ResourceNotFoundException("No student found with the id: " + request.getIdStudent())));
         return this.entityToResponse(this.submissionRepository.save(submission));
     }
 
@@ -63,7 +63,7 @@ public class SubmissionService implements ISubmissionService {
 
     private Submission find(Long id) {
         return this.submissionRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound("No submission found with the id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No submission found with the id: " + id));
     }
 
     private SubmissionResponse entityToResponse(Submission entity) {
